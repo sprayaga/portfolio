@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ my-portfolio.profile-title.value }}</title>
+    <meta name="{{my-portfolio.profile-title.value}} Online Portfolio" content="{{my-portfolio.profile-title.value}} Portfolio" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet-{{my-portfolio.color-select.value}}.css" />
+    <link href='http://fonts.googleapis.com/css?family=Hind:300|Montserrat:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav role="nav">
+        <div class="container cf">
+            <div class="left-nav">About <i class="fa fa-caret-down"></i></i></div>
+            {{#if my-portfolio.logo.value}}
+                <a href="index.html" class="header-logo" role="banner">
+                  <h1 class="sr-only" aria-hidden>{{ my-portfolio.profile-title.value }}</h1>
+                  <img src="images/{{ my-portfolio.logo.value }}" alt="logo" title="My logo">
+                </a>
+            {{else}}
+                <h1>{{ my-portfolio.profile-title.value }}</h1>
+            {{/if}}
+            <ul class="right-nav">
+                {{#each my-portfolio.select-input-double.options }}
+                    {{#each this}}
+                        <li>
+                            <a href="{{this}}" title="{{@key}} link"><i class="fa fa-{{@key}}"></i></a>
+                        </li>
+                    {{/each}}
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main">
+    <div class="overlay-view hidden">
+        <div class="close"><i class="fa fa-times"></i></div>
+        <div class="container project-details">
+              <div class="project-image">
+                <div class="image-container hidden">
+                  <img src="" alt="" title="">
+                </div>
+              </div>
+              <div class="text">
+                <h3></h3>
+                <div class="project-description"><p></p></div>
+                <div class="project-link"><a href=""></a></div>
+              </div>
+          </div>
+    </div>
+        <div class="container">
+
+            <div class="about cf">
+                <div class="container">
+                    {{#if my-portfolio.profile-picture.value }}
+                    <div class="about-image">
+                        <img src="images/{{ my-portfolio.profile-picture.value }}" alt="Profile picture" title="My profile picture">
+                    </div>
+                    {{else}}
+                    <div class="about-image-placeholder"></div>
+                    {{/if}}
+                    <div class="about-text">
+                        <h2>
+                         {{ my-portfolio.details-title.value }}
+                        </h2>
+                        {{{ my-portfolio.details.value }}}
+                    </div>
+
+                </div>
+            </div>
+            <ul class="projects cf" id="grid">
+                {{#each project}}
+                <li class="grid-item" data-id="{{ this.id }}">
+                    <a href="#/{{ this.id }}">
+                        <div class="project-container">
+                            <img src="images/{{ this.cover-image }}" alt="{{this.cover-image}}" title="{{this.cover-image}}">
+                            <div class="overlay">
+                                <div>{{ this.title }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </main>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="js/main.min.js"></script>
+</body>
+</html>
